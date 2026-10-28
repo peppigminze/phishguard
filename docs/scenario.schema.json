@@ -1,0 +1,308 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://peppigminze.github.io/phishguard/docs/scenario.schema.json",
+  "title": "PhishGuard-Szenario",
+  "description": "Ein Trainingsszenario (Mail, SMS oder Anruf). Querverweise im Body-Markup, Schweizer Rechtschreibung und Mindestanzahl Indikatoren prüft zusätzlich src/core/validator.js.",
+  "type": "object",
+  "required": [
+    "id",
+    "schemaVersion",
+    "channel",
+    "difficulty",
+    "category",
+    "isPhishing",
+    "title",
+    "sender",
+    "body",
+    "indicators",
+    "explanation"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Eindeutig, kebab-case, gleich wie der Dateiname"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "locale": {
+      "type": "string",
+      "default": "de-CH"
+    },
+    "channel": {
+      "enum": [
+        "email",
+        "sms",
+        "voice"
+      ]
+    },
+    "difficulty": {
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "category": {
+      "enum": [
+        "paket",
+        "bank",
+        "zahlung",
+        "behoerde",
+        "telekom",
+        "it-login",
+        "ceo-fraud",
+        "rechnung",
+        "quishing",
+        "intern",
+        "gutschein",
+        "messenger",
+        "oev",
+        "krankenkasse",
+        "domain"
+      ]
+    },
+    "isPhishing": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Kurztitel für Statistik und Trainer-Ansicht"
+    },
+    "situation": {
+      "type": "string",
+      "description": "Optionale Ausgangslage, wird über der Nachricht angezeigt"
+    },
+    "sender": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "address": {
+          "type": "string",
+          "description": "E-Mail (Pflicht bei channel=email), Telefonnummer oder SMS-Absendername"
+        }
+      }
+    },
+    "recipient": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Pflicht bei E-Mails"
+    },
+    "received": {
+      "type": "string",
+      "description": "Anzeige im Posteingang, z. B. 08:12, Gestern, Mo"
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "replyTo": {
+          "type": "string",
+          "pattern": "^[^\\s@]+@([a-z0-9-]+\\.)*([a-z0-9-]+\\.(invalid|example|test)|example\\.(com|org|net))$"
+        },
+        "returnPath": {
+          "type": "string",
+          "pattern": "^[^\\s@]+@([a-z0-9-]+\\.)*([a-z0-9-]+\\.(invalid|example|test)|example\\.(com|org|net))$"
+        },
+        "spf": {
+          "enum": [
+            "pass",
+            "fail",
+            "softfail",
+            "none"
+          ]
+        },
+        "dkim": {
+          "enum": [
+            "pass",
+            "fail",
+            "softfail",
+            "none"
+          ]
+        },
+        "dmarc": {
+          "enum": [
+            "pass",
+            "fail",
+            "softfail",
+            "none"
+          ]
+        }
+      }
+    },
+    "body": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Text mit Markup {{flag:indikator-id|Text}} und {{link:link-id|Text}}. Bei Anrufen eine Zeile pro Aussage, beginnend mit «Anrufer:» oder «Du:»."
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https?://([a-z0-9-]+\\.)*([a-z0-9-]+\\.(invalid|example|test)|example\\.(com|org|net))(/.*)?$"
+          },
+          "indicator": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "size"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "indicator": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "qr": {
+      "type": "object",
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "^https?://([a-z0-9-]+\\.)*([a-z0-9-]+\\.(invalid|example|test)|example\\.(com|org|net))(/.*)?$"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "indicator": {
+          "type": "string"
+        }
+      }
+    },
+    "indicators": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "target",
+          "title",
+          "explanation"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "type": {
+            "enum": [
+              "sender",
+              "urgency",
+              "grammar",
+              "link",
+              "attachment",
+              "request",
+              "greeting",
+              "headers",
+              "qr",
+              "offer",
+              "authority",
+              "channel",
+              "context",
+              "legit"
+            ]
+          },
+          "target": {
+            "enum": [
+              "body",
+              "sender",
+              "subject",
+              "headers",
+              "link",
+              "attachment",
+              "qr",
+              "general"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "explanation": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "explanation": {
+      "type": "string",
+      "minLength": 30
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "channel": {
+            "const": "email"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "subject"
+        ],
+        "properties": {
+          "sender": {
+            "required": [
+              "name",
+              "address"
+            ],
+            "properties": {
+              "address": {
+                "pattern": "^[^\\s@]+@([a-z0-9-]+\\.)*([a-z0-9-]+\\.(invalid|example|test)|example\\.(com|org|net))$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
