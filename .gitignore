@@ -1,0 +1,13 @@
+# Build-Ausgabe
+_site/
+# Wird von npm start / npm run build erzeugt
+precache-manifest.js
+
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+.vscode/
+.idea/

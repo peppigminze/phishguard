@@ -1,0 +1,20 @@
+{
+  "name": "phishguard",
+  "version": "1.0.0",
+  "description": "Gamifizierter Phishing-Trainer (PWA) für Schweizer KMU und Lernende – reine Simulation, versendet nichts.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "author": "peppigminze",
+  "homepage": "https://peppigminze.github.io/phishguard/",
+  "repository": { "type": "git", "url": "https://github.com/peppigminze/phishguard.git" },
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node scripts/build-manifest.mjs && node scripts/serve.mjs",
+    "test": "node --test \"tests/*.test.js\"",
+    "validate": "node scripts/validate-scenarios.mjs",
+    "balance": "node scripts/balance-report.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "npm run validate && npm test && npm run balance"
+  }
+}
