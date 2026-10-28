@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Strenge CSP: Die App darf nur Ressourcen vom eigenen Ursprung laden. Keine Requests an Dritte. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>PhishGuard – Phishing-Trainer (Simulation)</title>
+  <meta name="description" content="Gamifizierter Phishing-Trainer für Schweizer KMU und Lernende. Reine Simulation – es wird nichts versendet.">
+  <meta name="theme-color" content="#0F1B2D">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./src/styles/main.css">
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <noscript>
+      <p class="banner">PhishGuard braucht JavaScript. Es ist eine reine Schulungssimulation und versendet nichts.</p>
+    </noscript>
+  </div>
+</body>
+</html>
