@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "quishing-mfa-neuregistrierung",
+  "channel": "email",
+  "difficulty": "hard",
+  "category": "quishing",
+  "isPhishing": true,
+  "title": "Quishing: MFA neu registrieren",
+  "sender": {
+    "name": "IT Service Desk Muster AG",
+    "address": "it-servicedesk@muster-ag-support.invalid"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "none"
+  },
+  "subject": "Pflicht: Neuregistrierung Ihrer Zwei-Faktor-Authentifizierung",
+  "received": "13:15",
+  "body": "Liebe Mitarbeitende\n\nIm Zuge der Migration auf die neue Sicherheitsplattform muss die Zwei-Faktor-Authentifizierung aller Konten neu registriert werden.\n\n{{flag:mobile|Bitte scannen Sie dazu den untenstehenden QR-Code mit Ihrem privaten Smartphone}} und melden Sie sich mit Ihren Officium-Zugangsdaten an.\n\n{{flag:frist|Konten, die bis Donnerstag nicht neu registriert sind, werden deaktiviert.}}\n\nBesten Dank für Ihre Mithilfe\nIT Service Desk",
+  "qr": {
+    "url": "https://officium-mfa-register.invalid/enroll?tenant=muster-ag",
+    "caption": "MFA-Registrierung starten",
+    "indicator": "qr"
+  },
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Nicht die Firmendomain",
+      "explanation": "Die interne Informatik schreibt von muster-ag.example. muster-ag-support.invalid ist eine fremde Domain mit vertrautem Namen."
+    },
+    {
+      "id": "mobile",
+      "type": "channel",
+      "target": "body",
+      "title": "Ausweichen aufs private Handy",
+      "explanation": "Das private Smartphone ist nicht durch die Firmen-Sicherheit geschützt. Genau deshalb wird es verlangt."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "Drohende Deaktivierung",
+      "explanation": "Druck durch Kontosperre."
+    },
+    {
+      "id": "qr",
+      "type": "qr",
+      "target": "qr",
+      "title": "QR führt auf fremde Login-Seite",
+      "explanation": "Der QR-Code öffnet officium-mfa-register.invalid – dort würden Passwort und MFA abgefangen."
+    }
+  ],
+  "explanation": "Raffiniert, weil IT-Migrationen real vorkommen. Frage bei der Informatik über den bekannten Kanal nach (Telefon, Ticket), bevor du MFA irgendwo neu registrierst.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

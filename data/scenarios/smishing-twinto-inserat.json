@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "smishing-twinto-inserat",
+  "channel": "sms",
+  "difficulty": "medium",
+  "category": "zahlung",
+  "isPhishing": true,
+  "title": "Smishing: Geld fürs Inserat annehmen",
+  "situation": "Du verkaufst privat ein Velo auf einer Kleinanzeigen-Plattform.",
+  "sender": {
+    "name": "+41 00 528 03 61",
+    "address": "+41 00 528 03 61"
+  },
+  "received": "19:40",
+  "body": "Hallo! Ich hab dir über Twinto {{flag:geld|CHF 250.– für das Inserat geschickt}}. {{flag:annehmen|Damit das Geld ankommt, musst du es hier annehmen}}: {{link:l|twinto-zahlung.invalid/receive/77}} Danke und lg",
+  "links": [
+    {
+      "id": "l",
+      "url": "https://twinto-zahlung.invalid/receive/77",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "geld",
+      "type": "context",
+      "target": "body",
+      "title": "Zahlung ohne Absprache",
+      "explanation": "Die Person hat nicht nach Übergabe oder Details gefragt, sondern direkt «bezahlt»."
+    },
+    {
+      "id": "annehmen",
+      "type": "request",
+      "target": "body",
+      "title": "Geld «annehmen» per Link",
+      "explanation": "Um Geld zu empfangen, musst du dich nirgends einloggen. Die Seite will deine Login- oder Kartendaten."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Fremde Domain",
+      "explanation": "twinto-zahlung.invalid ist nicht die App. Echte Zahlungen siehst du in der App."
+    }
+  ],
+  "explanation": "Kleinanzeigen-Betrug: Angebliche Käufer schicken einen Link zum «Annehmen» des Geldes. Eingehende Zahlungen siehst du immer direkt in der App."
+}

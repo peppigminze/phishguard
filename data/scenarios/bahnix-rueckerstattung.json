@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "bahnix-rueckerstattung",
+  "channel": "email",
+  "difficulty": "easy",
+  "category": "oev",
+  "isPhishing": true,
+  "title": "Bahnix: Rückerstattung gegen Kartendaten",
+  "sender": {
+    "name": "Bahnix Kundenservice",
+    "address": "kundenservice@bahnix-refund.invalid"
+  },
+  "headers": {
+    "spf": "softfail",
+    "dkim": "none",
+    "dmarc": "fail"
+  },
+  "subject": "Rückerstattung CHF 89.40 – Bestätigung erforderlich",
+  "received": "Gestern",
+  "body": "Hallo,\n\nwegen einer Störung auf ihrer letzten Fahrt haben sie {{flag:geld|Anspruch auf eine Rückerstattung von CHF 89.40}}.\n\nUm das Geld zu erhalten, {{flag:karte|bestätigen sie bitte ihre Kreditkartendaten inklusive CVV-Code}}.\n\n{{link:refund|Rückerstattung anfordern}}\n\n{{flag:grammatik|Mit freundliche Grüsse}}\nBahnix Kundendienst",
+  "links": [
+    {
+      "id": "refund",
+      "url": "https://bahnix-refund.invalid/erstattung",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Absender ist nicht bahnix.example",
+      "explanation": "bahnix-refund.invalid gehört nicht zum Bahnunternehmen. Rückerstattungen laufen über dein Kundenkonto."
+    },
+    {
+      "id": "geld",
+      "type": "offer",
+      "target": "body",
+      "title": "Unerwartetes Geld",
+      "explanation": "Geld, mit dem du nicht gerechnet hast, ist ein beliebter Köder."
+    },
+    {
+      "id": "karte",
+      "type": "request",
+      "target": "body",
+      "title": "Frage nach CVV-Code",
+      "explanation": "Für eine Gutschrift braucht niemand deinen CVV-Code. Der ist nur zum Bezahlen da."
+    },
+    {
+      "id": "grammatik",
+      "type": "grammar",
+      "target": "body",
+      "title": "Fehler in Sprache und Form",
+      "explanation": "«Mit freundliche Grüsse» und kleingeschriebenes «sie/ihrer» – ein grosses Unternehmen schreibt so keine Kundenmails."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Link zu fremder Domain",
+      "explanation": "Der Button führt auf bahnix-refund.invalid."
+    }
+  ],
+  "explanation": "Hier wird mit Geld gelockt, und für eine Gutschrift werden Zahlungsdaten inklusive CVV verlangt. Das passt nie zusammen.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

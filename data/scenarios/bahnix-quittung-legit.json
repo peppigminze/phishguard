@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "bahnix-quittung-legit",
+  "channel": "email",
+  "difficulty": "easy",
+  "category": "oev",
+  "isPhishing": false,
+  "title": "Bahnix: Billett-Quittung",
+  "situation": "Du hast gestern Abend in der Bahnix-App ein Billett nach Bern gekauft.",
+  "sender": {
+    "name": "Bahnix",
+    "address": "noreply@bahnix.example"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "Ihre Quittung: Zürich HB – Bern, 2. Klasse",
+  "received": "Gestern",
+  "body": "Guten Tag Lena Brunner\n\n{{flag:kauf|Vielen Dank für Ihren Kauf in der Bahnix-App.}}\n\nBillett: Zürich HB → Bern, 2. Klasse, Halbtax\nGültig: 29.10.2026\nPreis: CHF 26.–\nZahlungsmittel: Visa •••• 4417\n\n{{flag:app|Das Billett finden Sie in der App unter «Meine Billette».}} Die Quittung ist als PDF angehängt.\n\nGute Reise!\nBahnix",
+  "attachments": [
+    {
+      "name": "Quittung_Bahnix_20261029.pdf",
+      "size": "64 KB",
+      "indicator": "pdf"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "legit",
+      "target": "sender",
+      "title": "Offizielle Domain",
+      "explanation": "bahnix.example mit bestandener Authentifizierung."
+    },
+    {
+      "id": "kauf",
+      "type": "legit",
+      "target": "body",
+      "title": "Passt zu deiner Handlung",
+      "explanation": "Du hast tatsächlich ein Billett gekauft – die Mail ist erwartet."
+    },
+    {
+      "id": "app",
+      "type": "legit",
+      "target": "body",
+      "title": "Verweist auf die App",
+      "explanation": "Statt eines Login-Links wird auf die App verwiesen."
+    },
+    {
+      "id": "pdf",
+      "type": "legit",
+      "target": "attachment",
+      "title": "Harmloser Anhang",
+      "explanation": "Ein PDF als Quittung zu einem eigenen Kauf ist normal."
+    }
+  ],
+  "explanation": "Erwartete Quittung zu einem eigenen Kauf, korrekte Domain, keine Aufforderung. Sicher.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

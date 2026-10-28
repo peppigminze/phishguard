@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "postis-zollgebuehr",
+  "channel": "email",
+  "difficulty": "easy",
+  "category": "paket",
+  "isPhishing": true,
+  "title": "Postis: Offene Zollgebühr",
+  "sender": {
+    "name": "Postis Paketdienst",
+    "address": "noreply@postis-zoll-ch.invalid"
+  },
+  "headers": {
+    "returnPath": "bounce@mass-mailer.invalid",
+    "spf": "fail",
+    "dkim": "none",
+    "dmarc": "fail"
+  },
+  "subject": "Ihr Paket wartet: Zollgebühr CHF 2.95 offen",
+  "received": "08:12",
+  "body": "{{flag:anrede|Sehr geehrter Kunde}},\n\nIhr Paket mit der Sendungsnummer 99.00.481203.1177 konnte nicht zugestellt werden, weil eine {{flag:gebuehr|Zollgebühr von CHF 2.95}} noch offen ist.\n\n{{flag:frist|Bezahlen Sie innerhalb von 24 Stunden}}, sonst wird das Paket an den Absender zurückgeschickt.\n\n{{link:pay|Gebühr jetzt bezahlen}}\n\nFreundliche Grüsse\nIhr Postis Team",
+  "links": [
+    {
+      "id": "pay",
+      "url": "https://postis-zoll-ch.invalid/zahlung?id=8812",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Fremde Absenderdomain",
+      "explanation": "Die Mail kommt von postis-zoll-ch.invalid. Der echte Paketdienst verschickt nur von postis.example. Ein Zusatz wie «-zoll-ch» im Domainnamen ist ein klassischer Trick."
+    },
+    {
+      "id": "anrede",
+      "type": "greeting",
+      "target": "body",
+      "title": "Unpersönliche Anrede",
+      "explanation": "Du hast ein Kundenkonto mit Namen – trotzdem heisst es «Sehr geehrter Kunde». Massenmails kennen deinen Namen nicht."
+    },
+    {
+      "id": "gebuehr",
+      "type": "request",
+      "target": "body",
+      "title": "Kleiner Betrag als Köder",
+      "explanation": "Ein paar Franken wirken harmlos. Das Ziel sind aber deine Kreditkartendaten, nicht die CHF 2.95."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "Künstlicher Zeitdruck",
+      "explanation": "«Innerhalb von 24 Stunden» soll dich vom Nachdenken abhalten."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Link führt auf fremde Seite",
+      "explanation": "Fährst du über den Button, siehst du die echte Zieladresse: postis-zoll-ch.invalid. Das ist nicht die Website von Postis."
+    }
+  ],
+  "explanation": "Typisches Paket-Phishing: kleine Gebühr, Zeitdruck und eine Absenderdomain, die nur ähnlich klingt. Prüfe Sendungen immer direkt in der App oder auf der Website, die du selbst eintippst.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "domain-verlaengerung",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "domain",
+  "isPhishing": true,
+  "title": "Domain läuft angeblich ab",
+  "situation": "Du betreust nebenbei die Website der Muster AG.",
+  "sender": {
+    "name": "Gipfelhost Domains",
+    "address": "billing@gipfelhost-domains.invalid"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "none",
+    "dmarc": "none"
+  },
+  "subject": "Letzte Mahnung: Domain muster-ag.example läuft ab",
+  "received": "Fr",
+  "body": "Guten Tag\n\n{{flag:frist|Ihre Domain muster-ag.example läuft in 24 Stunden ab.}} {{flag:folge|Danach sind Website und E-Mails nicht mehr erreichbar und die Domain kann von Dritten registriert werden.}}\n\nVerlängern Sie jetzt für {{flag:preis|CHF 189.– pro Jahr}}:\n\n{{link:renew|Domain verlängern}}\n\nGipfelhost – Ihr Schweizer Domain-Partner",
+  "links": [
+    {
+      "id": "renew",
+      "url": "https://gipfelhost-domains.invalid/renew?d=muster-ag",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Unbekannter Anbieter",
+      "explanation": "Prüfe zuerst: Ist Gipfelhost überhaupt euer Registrar? Domaindaten sind öffentlich – Betrüger nutzen sie für gezielte Mails."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "24 Stunden",
+      "explanation": "Registrare erinnern Wochen im Voraus, nicht erst am letzten Tag."
+    },
+    {
+      "id": "folge",
+      "type": "authority",
+      "target": "body",
+      "title": "Drastische Folgen",
+      "explanation": "Website und Mails weg – die Angst soll dich zum Zahlen bringen."
+    },
+    {
+      "id": "preis",
+      "type": "offer",
+      "target": "body",
+      "title": "Überhöhter Preis",
+      "explanation": "CHF 189.– pro Jahr ist ein Vielfaches des üblichen Preises."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Zahlungslink zu fremder Domain",
+      "explanation": "Verlängere nur im Kundenkonto, das du selbst aufrufst."
+    }
+  ],
+  "explanation": "Domain-Slamming und Phishing zugleich: Angst vor Ausfall plus Zahlungslink. Kontrolliere Ablaufdaten im echten Registrar-Konto.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "vishing-it-rueckruf-legit",
+  "channel": "voice",
+  "difficulty": "medium",
+  "category": "it-login",
+  "isPhishing": false,
+  "title": "Informatik ruft wegen Ticket zurück",
+  "situation": "Du hast gestern ein Ticket eröffnet: Der Drucker im 3. OG druckt nicht.",
+  "sender": {
+    "name": "Informatik (intern)",
+    "address": "444"
+  },
+  "received": "09:12",
+  "body": "Anrufer: Hoi Lena, Reto von der Informatik. {{flag:ticket|Ich rufe wegen deinem Ticket 26-0817 zum Drucker im 3. OG an.}}\nDu: Ah super, danke!\nAnrufer: Ich habe den Treiber auf dem Druckserver neu installiert. {{flag:test|Kannst du bitte eine Testseite drucken?}}\nDu: Klappt wieder!\nAnrufer: Perfekt, dann schliesse ich das Ticket. {{flag:bestaetigung|Du bekommst noch eine Bestätigung im Ticketsystem.}}",
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "legit",
+      "target": "sender",
+      "title": "Interne Nummer",
+      "explanation": "Der Anruf kommt von der bekannten internen Nummer 444."
+    },
+    {
+      "id": "ticket",
+      "type": "legit",
+      "target": "body",
+      "title": "Bezug auf dein Ticket",
+      "explanation": "Der Anrufer kennt die Ticketnummer und dein Problem."
+    },
+    {
+      "id": "test",
+      "type": "legit",
+      "target": "body",
+      "title": "Harmlose Bitte",
+      "explanation": "Eine Testseite drucken – keine Daten, kein Passwort, kein Code."
+    },
+    {
+      "id": "bestaetigung",
+      "type": "legit",
+      "target": "body",
+      "title": "Nachvollziehbar",
+      "explanation": "Der Abschluss wird im Ticketsystem dokumentiert."
+    }
+  ],
+  "explanation": "Nicht jeder IT-Anruf ist Vishing. Hier stimmen Nummer, Ticket und Anliegen, und es werden keine Zugangsdaten verlangt."
+}

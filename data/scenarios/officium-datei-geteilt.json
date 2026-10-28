@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "officium-datei-geteilt",
+  "channel": "email",
+  "difficulty": "hard",
+  "category": "it-login",
+  "isPhishing": true,
+  "title": "Officium: Datei wurde geteilt",
+  "situation": "Du arbeitest mit Sandra Lüthi von der Druckerei Alpstein AG an einer Offerte.",
+  "sender": {
+    "name": "Sandra Lüthi (über Officium)",
+    "address": "noreply@officium-files.invalid"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "none"
+  },
+  "subject": "Sandra Lüthi hat «Offerte_Q4_final.xlsx» mit Ihnen geteilt",
+  "received": "11:48",
+  "body": "Sandra Lüthi hat eine Datei mit Ihnen geteilt.\n\n«Hier die überarbeitete Offerte. {{flag:kontext|Kannst du bis heute Mittag noch einen Blick drauf werfen?}}»\n\n{{link:open|Offerte_Q4_final.xlsx öffnen}}\n\nDieser Link funktioniert nur für die Personen, für die er freigegeben wurde.",
+  "links": [
+    {
+      "id": "open",
+      "url": "https://officium.example.login-secure.invalid/s/Q4-Offerte",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Benachrichtigung von fremder Domain",
+      "explanation": "Echte Freigaben kommen von officium.example. officium-files.invalid ist nachgebaut."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Echter Name am Anfang, falsche Domain am Ende",
+      "explanation": "Die Adresse beginnt mit «officium.example», endet aber auf login-secure.invalid. Massgebend ist das Ende des Hostnamens."
+    },
+    {
+      "id": "kontext",
+      "type": "context",
+      "target": "body",
+      "title": "Echter Kontakt, ungewöhnlicher Druck",
+      "explanation": "Der Name stimmt – vermutlich wurde Sandras Konto übernommen. Frag sie kurz telefonisch, bevor du dich irgendwo anmeldest."
+    }
+  ],
+  "explanation": "Sehr realistisch: Der Kontext passt, der Name stimmt. Verräterisch sind nur Absenderdomain und die Zieladresse des Links. Öffne geteilte Dateien lieber direkt im Portal.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

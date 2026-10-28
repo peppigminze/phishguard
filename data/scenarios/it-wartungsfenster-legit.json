@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "it-wartungsfenster-legit",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "intern",
+  "isPhishing": false,
+  "title": "Informatik: Wartungsfenster",
+  "sender": {
+    "name": "Informatik Muster AG",
+    "address": "informatik@muster-ag.example"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "Wartungsfenster Samstag 1.11., 07:00–12:00 Uhr",
+  "received": "Mi",
+  "body": "Liebe Kolleginnen und Kollegen\n\nAm Samstag, 1. November, aktualisieren wir zwischen 07:00 und 12:00 Uhr die Server. In dieser Zeit sind Laufwerk S: und das Intranet nicht erreichbar.\n\n{{flag:keineaktion|Sie müssen nichts tun.}} {{flag:nie|Wir werden Sie im Zusammenhang mit dieser Wartung nie nach Ihrem Passwort fragen.}}\n\nFragen? {{flag:kontakt|Interne Nummer 444 oder Ticket im Intranet.}}\n\nBesten Dank\nReto Wyss, Informatik",
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "legit",
+      "target": "sender",
+      "title": "Interne Domain, bestanden",
+      "explanation": "informatik@muster-ag.example, SPF/DKIM/DMARC bestanden."
+    },
+    {
+      "id": "keineaktion",
+      "type": "legit",
+      "target": "body",
+      "title": "Keine Aktion nötig",
+      "explanation": "Die Mail informiert nur. Es gibt nichts anzuklicken."
+    },
+    {
+      "id": "nie",
+      "type": "legit",
+      "target": "body",
+      "title": "Warnt selbst vor Phishing",
+      "explanation": "Seriöse IT-Abteilungen weisen darauf hin, dass sie nie nach Passwörtern fragen."
+    },
+    {
+      "id": "kontakt",
+      "type": "legit",
+      "target": "body",
+      "title": "Bekannte Kontaktwege",
+      "explanation": "Interne Nummer und Ticketsystem – Kanäle, die du kennst."
+    }
+  ],
+  "explanation": "Echte IT-Info: interner Absender, keine Links, keine Datenabfrage. «Wartung» ist zwar ein beliebtes Phishing-Thema, hier fehlen aber alle Warnsignale.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

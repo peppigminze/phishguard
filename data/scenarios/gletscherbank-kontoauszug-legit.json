@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "gletscherbank-kontoauszug-legit",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "bank",
+  "isPhishing": false,
+  "title": "Gletscherbank: Kontoauszug bereit",
+  "sender": {
+    "name": "Gletscherbank",
+    "address": "info@gletscherbank.example"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "Ihr Kontoauszug Oktober steht bereit",
+  "received": "08:00",
+  "body": "Guten Tag Frau Brunner\n\nIhr Kontoauszug für Oktober 2026 steht im E-Banking zur Verfügung.\n\n{{flag:keinlink|Aus Sicherheitsgründen enthält diese Nachricht keinen Link. Bitte melden Sie sich wie gewohnt über die App oder die Ihnen bekannte Adresse an.}}\n\n{{flag:hinweis|Wir fragen Sie nie per E-Mail oder Telefon nach Passwort oder Freigabecodes.}}\n\nFreundliche Grüsse\nGletscherbank AG",
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "legit",
+      "target": "sender",
+      "title": "Echte Bankdomain",
+      "explanation": "gletscherbank.example mit bestandener Authentifizierung."
+    },
+    {
+      "id": "keinlink",
+      "type": "legit",
+      "target": "body",
+      "title": "Bewusst kein Link",
+      "explanation": "Die Bank schickt dich auf den gewohnten Weg – genau richtig."
+    },
+    {
+      "id": "hinweis",
+      "type": "legit",
+      "target": "body",
+      "title": "Sicherheitshinweis",
+      "explanation": "Der Hinweis entspricht dem, was echte Banken kommunizieren."
+    }
+  ],
+  "explanation": "Eine echte Bankinfo: keine Links, keine Abfrage, ein klarer Sicherheitshinweis. Vergleiche sie mit dem Phishing-Szenario derselben Bank.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

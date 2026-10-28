@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "vishing-it-support",
+  "channel": "voice",
+  "difficulty": "medium",
+  "category": "it-login",
+  "isPhishing": true,
+  "title": "Vishing: Angeblicher IT-Support",
+  "sender": {
+    "name": "«IT-Support»",
+    "address": "+41 00 220 18 40"
+  },
+  "received": "15:10",
+  "body": "Anrufer: Grüezi, hier ist Patrick vom IT-Support. {{flag:vorwand|Wir sehen auf unserem Monitoring, dass Ihr Konto gerade Spam verschickt.}}\nDu: Oh, das wusste ich nicht.\nAnrufer: Kein Problem, das lösen wir zusammen. {{flag:frist|Wir müssen das aber sofort machen, sonst wird Ihr Konto gesperrt.}}\nAnrufer: Ich schicke Ihnen jetzt einen Code aufs Handy. {{flag:code|Lesen Sie mir den bitte einfach vor.}}\nAnrufer: {{flag:passwort|Und zur Sicherheit brauche ich noch kurz Ihr aktuelles Passwort.}}",
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Externe Nummer",
+      "explanation": "Die interne Informatik ruft über eine interne Nummer an und bezieht sich auf ein Ticket."
+    },
+    {
+      "id": "vorwand",
+      "type": "authority",
+      "target": "body",
+      "title": "Alarmierender Vorwand",
+      "explanation": "Ein angebliches Sicherheitsproblem macht dich hilfsbereit und nervös."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "Sofort-Druck",
+      "explanation": "Keine Zeit zum Nachdenken oder Rückfragen."
+    },
+    {
+      "id": "code",
+      "type": "request",
+      "target": "body",
+      "title": "MFA-Code vorlesen",
+      "explanation": "Ein Bestätigungscode ist nur für dich. Wer ihn bekommt, meldet sich als du an."
+    },
+    {
+      "id": "passwort",
+      "type": "request",
+      "target": "body",
+      "title": "Passwort verlangt",
+      "explanation": "Die Informatik braucht dein Passwort nie – sie kann es zurücksetzen."
+    }
+  ],
+  "explanation": "Vishing nutzt Hilfsbereitschaft und Zeitdruck. Lege auf und rufe die Informatik selbst über die bekannte interne Nummer an."
+}

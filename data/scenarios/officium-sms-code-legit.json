@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "officium-sms-code-legit",
+  "channel": "sms",
+  "difficulty": "medium",
+  "category": "it-login",
+  "isPhishing": false,
+  "title": "Officium: Bestätigungscode bei eigener Anmeldung",
+  "situation": "Du meldest dich gerade selbst an deinem Laptop bei Officium an.",
+  "sender": {
+    "name": "Officium",
+    "address": "Officium"
+  },
+  "received": "Jetzt",
+  "body": "{{flag:code|Ihr Officium-Bestätigungscode: 482913.}} {{flag:warnung|Geben Sie diesen Code niemandem weiter – auch nicht unserem Support.}} Falls Sie sich nicht gerade anmelden, ignorieren Sie diese SMS.",
+  "indicators": [
+    {
+      "id": "code",
+      "type": "legit",
+      "target": "body",
+      "title": "Erwarteter Code",
+      "explanation": "Der Code kommt genau in dem Moment, in dem du dich selbst anmeldest."
+    },
+    {
+      "id": "warnung",
+      "type": "legit",
+      "target": "body",
+      "title": "Kein Link, klare Warnung",
+      "explanation": "Die SMS enthält keinen Link und warnt davor, den Code weiterzugeben."
+    },
+    {
+      "id": "kontext",
+      "type": "context",
+      "target": "general",
+      "title": "Kontext entscheidet",
+      "explanation": "Derselbe Code ohne eigene Anmeldung wäre ein Alarmzeichen: Dann kennt jemand dein Passwort."
+    }
+  ],
+  "explanation": "Bestätigungscodes sind legitim, wenn du sie selbst ausgelöst hast. Gib sie aber nie weiter – auch nicht am Telefon."
+}

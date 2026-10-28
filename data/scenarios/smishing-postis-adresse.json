@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "smishing-postis-adresse",
+  "channel": "sms",
+  "difficulty": "easy",
+  "category": "paket",
+  "isPhishing": true,
+  "title": "Smishing: Paketadresse unvollständig",
+  "sender": {
+    "name": "+41 00 391 72 55",
+    "address": "+41 00 391 72 55"
+  },
+  "received": "18:22",
+  "body": "Postis: Ihr Paket ist im Verteilzentrum. {{flag:adresse|Die Adresse ist unvollständig}}. Bitte bestätigen: {{link:l|postis-ch.invalid/a/9KX2}} {{flag:frist|(nur heute gültig)}}",
+  "links": [
+    {
+      "id": "l",
+      "url": "https://postis-ch.invalid/a/9KX2",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Private Handynummer",
+      "explanation": "Paketdienste verschicken Benachrichtigungen nicht von einer gewöhnlichen Mobilnummer."
+    },
+    {
+      "id": "adresse",
+      "type": "context",
+      "target": "body",
+      "title": "Vorwand ohne Details",
+      "explanation": "Keine Sendungsnummer, kein Absender – passt auf jede Person, die irgendwann ein Paket erwartet."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "«Nur heute gültig»",
+      "explanation": "Zeitdruck in Klammern ist ein typisches Smishing-Muster."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Kurzer, fremder Link",
+      "explanation": "postis-ch.invalid ist nicht postis.example."
+    }
+  ],
+  "explanation": "Klassisches Smishing. Sendungen prüfst du in der offiziellen App oder mit der Nummer aus der Bestellbestätigung."
+}

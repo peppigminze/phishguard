@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "anhang-lohnabrechnung-html",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "intern",
+  "isPhishing": true,
+  "title": "Gefälschte Lohnabrechnung (HTML)",
+  "sender": {
+    "name": "Personalabteilung",
+    "address": "personal@muster-ag.example"
+  },
+  "headers": {
+    "returnPath": "bounce@mailer-lohn.invalid",
+    "spf": "fail",
+    "dkim": "none",
+    "dmarc": "fail"
+  },
+  "subject": "Ihre Lohnabrechnung Oktober 2026 – Korrektur",
+  "received": "10:20",
+  "body": "Guten Tag\n\nAufgrund eines Fehlers bei der Abrechnung wurde Ihre Lohnabrechnung Oktober korrigiert. {{flag:neugier|Die Nachzahlung ist im Dokument aufgeführt.}}\n\n{{flag:login|Zum Öffnen der Abrechnung melden Sie sich mit Ihrem Officium-Konto an.}}\n\nFreundliche Grüsse\nPersonalabteilung",
+  "attachments": [
+    {
+      "name": "Lohnabrechnung_Okt2026.html",
+      "size": "36 KB",
+      "indicator": "anhang"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "header",
+      "type": "headers",
+      "target": "headers",
+      "title": "Gefälschter Absender",
+      "explanation": "Die Adresse sieht intern aus, aber SPF und DMARC schlagen fehl, und der Return-Path zeigt auf mailer-lohn.invalid. Der Absender wurde gefälscht (Spoofing)."
+    },
+    {
+      "id": "neugier",
+      "type": "offer",
+      "target": "body",
+      "title": "Neugier auf Geld",
+      "explanation": "«Nachzahlung» weckt Neugier – genau darauf zielt die Mail."
+    },
+    {
+      "id": "login",
+      "type": "request",
+      "target": "body",
+      "title": "Login für ein Dokument",
+      "explanation": "Ein PDF braucht keinen Login. Die HTML-Datei zeigt eine falsche Anmeldeseite."
+    },
+    {
+      "id": "anhang",
+      "type": "attachment",
+      "target": "attachment",
+      "title": "Lohnabrechnung als .html",
+      "explanation": "Lohnabrechnungen kommen als PDF oder im HR-Portal, nicht als HTML-Datei."
+    }
+  ],
+  "explanation": "Ein interner Absender ist kein Beweis. Prüfe die Details (SPF/DMARC) und frag im Zweifel direkt in der Personalabteilung nach.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

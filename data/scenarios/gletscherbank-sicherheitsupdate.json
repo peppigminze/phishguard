@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "gletscherbank-sicherheitsupdate",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "bank",
+  "isPhishing": true,
+  "title": "Gletscherbank: Sicherheitsdaten bestätigen",
+  "sender": {
+    "name": "Gletscherbank Sicherheit",
+    "address": "sicherheit@gletscherbank-secure.invalid"
+  },
+  "headers": {
+    "replyTo": "support@gletscherbank-secure.invalid",
+    "spf": "softfail",
+    "dkim": "none",
+    "dmarc": "fail"
+  },
+  "subject": "Wichtig: Aktualisierung Ihrer E-Banking-Sicherheitsdaten",
+  "received": "07:55",
+  "body": "Guten Tag\n\nIm Rahmen der neuen Sicherheitsrichtlinie 2026 müssen alle Kundinnen und Kunden ihre Zugangsdaten bestätigen. {{flag:autoritaet|Gemäss Vorgabe der Bankenaufsicht}} ist dies obligatorisch.\n\n{{flag:daten|Bitte geben Sie Vertragsnummer, Passwort und den aktuellen SMS-Code ein}}.\n\n{{link:login|E-Banking-Login öffnen}}\n\nKonten ohne Bestätigung werden {{flag:frist|ab dem 3. des Folgemonats eingeschränkt}}.\n\nFreundliche Grüsse\nGletscherbank AG",
+  "links": [
+    {
+      "id": "login",
+      "url": "https://gletscherbank-secure.invalid/ebanking/login",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Ähnliche, aber falsche Domain",
+      "explanation": "Die Bank nutzt gletscherbank.example. «-secure» klingt sicher, ist aber eine fremde Domain."
+    },
+    {
+      "id": "header",
+      "type": "headers",
+      "target": "headers",
+      "title": "Authentifizierung fehlgeschlagen",
+      "explanation": "In den Details steht DMARC: fail. Der Absender kann nicht beweisen, dass er zur angegebenen Domain gehört."
+    },
+    {
+      "id": "autoritaet",
+      "type": "authority",
+      "target": "body",
+      "title": "Berufung auf eine Behörde",
+      "explanation": "Mit «Vorgabe der Bankenaufsicht» soll die Aufforderung offiziell wirken."
+    },
+    {
+      "id": "daten",
+      "type": "request",
+      "target": "body",
+      "title": "Passwort und SMS-Code verlangt",
+      "explanation": "Keine Bank fragt per Mail nach Passwort und Code. Mit beidem können Angreifende Zahlungen auslösen."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "Drohung mit Einschränkung",
+      "explanation": "Die Frist soll dich unter Druck setzen."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Gefälschte Login-Seite",
+      "explanation": "Der Link führt nicht zu gletscherbank.example."
+    }
+  ],
+  "explanation": "Banken verlangen nie Passwort und Freigabecode per Mail. Logge dich ausschliesslich über die App oder die selbst eingetippte Adresse ein.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

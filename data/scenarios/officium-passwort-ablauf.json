@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "officium-passwort-ablauf",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "it-login",
+  "isPhishing": true,
+  "title": "Officium 365: Passwort läuft ab",
+  "sender": {
+    "name": "Officium 365 Admin",
+    "address": "no-reply@officium365-account.invalid"
+  },
+  "headers": {
+    "spf": "none",
+    "dkim": "none",
+    "dmarc": "none"
+  },
+  "subject": "Ihr Passwort läuft heute ab",
+  "received": "08:03",
+  "body": "{{flag:anrede|Hallo lena.brunner@muster-ag.example}},\n\n{{flag:frist|Das Passwort für Ihr Konto läuft heute um 17:00 Uhr ab.}} Um Ihren Zugriff auf E-Mails und Dateien zu behalten, bestätigen Sie bitte Ihr aktuelles Passwort.\n\n{{link:keep|Aktuelles Passwort beibehalten}}\n\nDiese Nachricht wurde vom Officium 365 Service gesendet. Bitte nicht antworten.",
+  "links": [
+    {
+      "id": "keep",
+      "url": "https://officium365-account.invalid/keep-password?u=lena.brunner",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Fremde Domain",
+      "explanation": "Officium-Nachrichten kommen von officium.example. officium365-account.invalid ist nachgebaut."
+    },
+    {
+      "id": "anrede",
+      "type": "greeting",
+      "target": "body",
+      "title": "Mailadresse als Anrede",
+      "explanation": "Statt deines Namens steht deine Mailadresse – ein Zeichen für automatisierten Massenversand."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "Ablauf «heute um 17:00»",
+      "explanation": "Konkrete, knappe Frist, damit du sofort klickst."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "«Passwort beibehalten» gibt es nicht",
+      "explanation": "Der Link führt auf eine gefälschte Login-Seite. Passwortänderungen machst du direkt im Portal, das du selbst aufrufst."
+    }
+  ],
+  "explanation": "Login-Phishing für Firmenkonten. Ein gestohlenes Officium-Passwort öffnet Angreifenden Mails, Dateien und Teams. Melde solche Mails, statt sie nur zu löschen.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

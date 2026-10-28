@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "vishing-ceo-geschenkkarten",
+  "channel": "voice",
+  "difficulty": "hard",
+  "category": "ceo-fraud",
+  "isPhishing": true,
+  "title": "Vishing: CEO will Geschenkkarten",
+  "sender": {
+    "name": "Unbekannt",
+    "address": "Nummer unterdrückt"
+  },
+  "received": "07:41",
+  "body": "Anrufer: Hoi Lena, hier ist Martin. {{flag:kanal|Ich rufe vom Flughafen an, mein Akku ist fast leer, darum diese Nummer.}}\nDu: Hoi Martin, was gibt's?\nAnrufer: Ich brauche dringend deine Hilfe. {{flag:gutscheine|Kauf bitte 8 Geschenkkarten à CHF 250.– und schick mir die Codes per SMS.}}\nAnrufer: {{flag:geheim|Es ist eine Überraschung für ein Kundenevent – sag bitte niemandem etwas.}}\nAnrufer: {{flag:eile|Ich steige in 20 Minuten ins Flugzeug, es muss jetzt sein.}}",
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Unterdrückte Nummer",
+      "explanation": "Der Anruf lässt sich nicht zurückverfolgen. Die Stimme kann mit KI nachgemacht sein (Deepfake)."
+    },
+    {
+      "id": "kanal",
+      "type": "channel",
+      "target": "body",
+      "title": "Erklärung für fremden Kanal",
+      "explanation": "Die Ausrede für die fremde Nummer kommt ungefragt – ein typisches Muster."
+    },
+    {
+      "id": "gutscheine",
+      "type": "request",
+      "target": "body",
+      "title": "Geschenkkarten-Codes",
+      "explanation": "Codes per SMS sind sofort verwertbares, unwiderrufliches Geld. Kein Unternehmen bezahlt so."
+    },
+    {
+      "id": "geheim",
+      "type": "authority",
+      "target": "body",
+      "title": "Geheimhaltung",
+      "explanation": "Niemand soll dich warnen können."
+    },
+    {
+      "id": "eile",
+      "type": "urgency",
+      "target": "body",
+      "title": "Zeitdruck",
+      "explanation": "«In 20 Minuten» lässt keinen Raum für Rückfragen."
+    }
+  ],
+  "explanation": "Auch wenn die Stimme vertraut klingt: Geschenkkarten, Geheimhaltung und Eile sind ein sicheres Zeichen für Betrug. Rufe die Person über ihre bekannte Nummer zurück."
+}

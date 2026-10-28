@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "locale": "de-CH",
+  "tips": [
+    "Lies Domains von rechts nach links: Entscheidend ist der Teil direkt vor der Endung.",
+    "Zeitdruck ist das häufigste Werkzeug von Betrügern. Wer drängt, will nicht, dass du nachdenkst.",
+    "Keine Bank, keine Informatik und kein Paketdienst fragt nach Passwort oder Bestätigungscode.",
+    "Neue Bankverbindung per Mail? Immer telefonisch über eine bekannte Nummer bestätigen.",
+    "Unsicher? Melden ist nie falsch. Klicken kann teuer werden.",
+    "Ein QR-Code ist auch nur ein Link – nur siehst du ihn schlechter.",
+    "Der Absendername ist frei wählbar. Schau dir die Adresse dahinter an.",
+    "Eine vertraute Stimme am Telefon beweist nichts mehr. Rückruf über die bekannte Nummer schon."
+  ],
+  "sections": [
+    {
+      "id": "merkmale",
+      "title": "Merkmale von Phishing",
+      "entries": [
+        {
+          "id": "absender",
+          "title": "Absender und Domain",
+          "tags": [
+            "absender",
+            "domain",
+            "spoofing"
+          ],
+          "body": [
+            "Der angezeigte Name («Postis Kundendienst») kann frei gewählt werden. Aussagekräftig ist die Adresse dahinter – und dort vor allem die Domain nach dem @.",
+            "Achte auf Zusätze (postis-zoll-ch statt postis), vertauschte Zeichen (rnuster statt muster) und fremde Endungen. Bei internen Absendern gilt: Auch die eigene Firmendomain kann gefälscht sein (Spoofing). Dann helfen die Header-Details."
+          ]
+        },
+        {
+          "id": "links",
+          "title": "Links prüfen",
+          "tags": [
+            "link",
+            "url",
+            "hover",
+            "subdomain"
+          ],
+          "body": [
+            "Fahre mit der Maus über einen Link, ohne zu klicken. Unten im Fenster oder in einem Tooltip erscheint die echte Zieladresse. Auf dem Handy: Link lange drücken.",
+            "Lies den Hostnamen von rechts nach links. In «mein-helvecom.billing-update.invalid» ist billing-update.invalid die eigentliche Domain – «mein-helvecom» ist nur eine frei wählbare Subdomain.",
+            "Im Zweifel: Nicht klicken, sondern die bekannte Adresse selbst eintippen oder die App öffnen."
+          ]
+        },
+        {
+          "id": "dringlichkeit",
+          "title": "Zeitdruck und Drohungen",
+          "tags": [
+            "dringlichkeit",
+            "frist",
+            "sperre",
+            "drohung"
+          ],
+          "body": [
+            "«Innert 24 Stunden», «heute noch», «sonst wird Ihr Konto gesperrt»: Druck ist das wichtigste Werkzeug von Angreifenden. Wer unter Stress steht, prüft weniger genau.",
+            "Seriöse Organisationen geben realistische Fristen und drohen nicht per Mail mit Sperren oder Anzeigen."
+          ]
+        },
+        {
+          "id": "forderungen",
+          "title": "Forderungen nach Daten oder Geld",
+          "tags": [
+            "passwort",
+            "code",
+            "kreditkarte",
+            "zahlung"
+          ],
+          "body": [
+            "Passwörter, Bestätigungscodes (SMS, App), CVV-Nummern und Freigaben in Bank-Apps gehören nur dir. Niemand Seriöses fragt per Mail, SMS oder Telefon danach.",
+            "Auch kleine Beträge («Zollgebühr CHF 2.95») sind ein Köder: Es geht um deine Kartendaten, nicht um den Betrag."
+          ]
+        },
+        {
+          "id": "sprache",
+          "title": "Anrede, Sprache und Gestaltung",
+          "tags": [
+            "anrede",
+            "grammatik",
+            "sprache"
+          ],
+          "body": [
+            "Unpersönliche Anreden («Sehr geehrter Kunde», deine Mailadresse statt deines Namens) deuten auf Massenversand hin.",
+            "Rechtschreibfehler waren früher ein gutes Zeichen. Dank KI-Übersetzungen werden Phishing-Mails aber immer fehlerfreier – fehlende Fehler beweisen also nichts."
+          ]
+        },
+        {
+          "id": "anhaenge",
+          "title": "Gefährliche Anhänge",
+          "tags": [
+            "anhang",
+            "exe",
+            "html",
+            "makro",
+            "zip"
+          ],
+          "body": [
+            "Vorsicht bei ausführbaren Dateien (.exe, .scr, .js, .vbs, .bat, .lnk), Archiven (.zip, .iso, .img), Office-Dateien mit Makros (.docm, .xlsm) und HTML-Dateien (.html, .htm).",
+            "Doppelte Endungen wie «Rechnung.pdf.exe» sind ein klarer Trick. Eine HTML-Datei als «Lohnabrechnung» öffnet meist eine gefälschte Login-Seite im Browser."
+          ]
+        },
+        {
+          "id": "header",
+          "title": "Header lesen: SPF, DKIM, DMARC",
+          "tags": [
+            "header",
+            "spf",
+            "dkim",
+            "dmarc",
+            "reply-to"
+          ],
+          "body": [
+            "SPF, DKIM und DMARC prüfen, ob ein Server im Namen einer Domain senden darf. «fail» bei einer bekannten Domain ist ein starkes Warnsignal.",
+            "Aber: «pass» bedeutet nur, dass die Domain korrekt eingerichtet ist – auch eine gefälschte Domain wie rnuster-ag.example kann bestehen.",
+            "Prüfe ausserdem «Antwort an» (Reply-To): Weicht sie vom Absender ab, landen deine Antworten bei jemand anderem."
+          ]
+        },
+        {
+          "id": "quishing",
+          "title": "Quishing: Phishing mit QR-Codes",
+          "tags": [
+            "qr",
+            "quishing",
+            "smartphone"
+          ],
+          "body": [
+            "Ein QR-Code ist ein versteckter Link. Firmenfilter erkennen ihn oft nicht, und auf dem Smartphone siehst du die Zieladresse schlechter.",
+            "Besonders heikel: Aufforderungen, Codes mit dem privaten Handy zu scannen. Prüfe die angezeigte Adresse vor dem Öffnen und gib keine Firmen-Zugangsdaten auf dem Handy ein, wenn du nicht sicher bist."
+          ]
+        },
+        {
+          "id": "smishing",
+          "title": "Smishing: Phishing per SMS",
+          "tags": [
+            "sms",
+            "smishing",
+            "messenger"
+          ],
+          "body": [
+            "SMS wirken persönlich und sind kurz – ideal für Betrug. Paket-, Bank-, Krankenkassen- und «Hallo Mami»-Nachrichten sind besonders häufig.",
+            "Absendernamen bei SMS lassen sich fälschen. Öffne lieber die offizielle App oder rufe die Person über die bekannte Nummer an."
+          ]
+        },
+        {
+          "id": "vishing",
+          "title": "Vishing und Deepfake-Anrufe",
+          "tags": [
+            "anruf",
+            "telefon",
+            "vishing",
+            "deepfake",
+            "spoofing"
+          ],
+          "body": [
+            "Die angezeigte Nummer kann gefälscht sein (Caller-ID-Spoofing), und Stimmen lassen sich mit KI nachahmen.",
+            "Faustregel: Wer anruft und etwas will – Passwort, Code, Freigabe, Geschenkkarten –, wird zurückgerufen. Leg auf und wähle die Nummer, die du selbst kennst."
+          ]
+        },
+        {
+          "id": "ceo-fraud",
+          "title": "CEO-Fraud",
+          "tags": [
+            "ceo",
+            "chef",
+            "überweisung",
+            "geheim"
+          ],
+          "body": [
+            "Angreifende geben sich als Geschäftsleitung aus und verlangen eine dringende, vertrauliche Zahlung. Typisch: Geheimhaltung, Zeitdruck, «nicht erreichbar».",
+            "Schutz: Zahlungen nur nach dem festgelegten Freigabeprozess (Vier-Augen-Prinzip) und Rückruf über eine bekannte Nummer – egal, wer drängt."
+          ]
+        },
+        {
+          "id": "rechnungsbetrug",
+          "title": "Rechnungsbetrug und IBAN-Wechsel",
+          "tags": [
+            "rechnung",
+            "iban",
+            "lieferant",
+            "bec"
+          ],
+          "body": [
+            "Bei Business E-Mail Compromise (BEC) übernehmen Angreifende das Postfach eines Lieferanten und melden eine «neue Bankverbindung».",
+            "Neue IBANs immer telefonisch beim bekannten Kontakt bestätigen – nie über Angaben aus derselben Mail."
+          ]
+        },
+        {
+          "id": "echt",
+          "title": "Zeichen für Echtheit",
+          "tags": [
+            "legitim",
+            "echt",
+            "fehlalarm"
+          ],
+          "body": [
+            "Nicht alles ist Phishing. Echte Nachrichten haben meist: korrekte Domain, persönliche Anrede, einen Bezug zu etwas, das du selbst getan hast, und keine Forderung nach Daten.",
+            "Melden ist zwar besser als klicken – zu viele Fehlalarme kosten aber Zeit. Ziel ist ein geschulter Blick, nicht Misstrauen gegenüber allem."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "handeln",
+      "title": "Was tun bei Verdacht?",
+      "entries": [
+        {
+          "id": "verdacht",
+          "title": "Bei Verdacht",
+          "tags": [
+            "melden",
+            "verdacht"
+          ],
+          "body": [
+            "Nicht klicken, nicht antworten, keine Anhänge öffnen.",
+            "Melde die Nachricht über den Melde-Knopf in deinem Mailprogramm oder direkt deiner Informatik. Erst danach löschen – so können auch andere geschützt werden.",
+            "Bei SMS und Anrufen: Absender bzw. Nummer notieren und der Informatik melden."
+          ]
+        },
+        {
+          "id": "geklickt",
+          "title": "Wenn du schon geklickt hast",
+          "tags": [
+            "notfall",
+            "geklickt",
+            "passwort"
+          ],
+          "body": [
+            "Sofort die Informatik informieren. Das ist kein Grund für Scham – schnelle Meldungen verhindern grossen Schaden.",
+            "Hast du ein Passwort eingegeben: Sofort über den bekannten Weg ändern. Bei Bank- oder Kartendaten: Bank anrufen und Karte sperren lassen.",
+            "Bei finanziellem Schaden: Anzeige bei der Polizei erstatten."
+          ]
+        },
+        {
+          "id": "meldestellen",
+          "title": "Meldestellen in der Schweiz",
+          "tags": [
+            "bacs",
+            "ncsc",
+            "antiphishing",
+            "meldestelle"
+          ],
+          "body": [
+            "Bundesamt für Cybersicherheit BACS (früher NCSC): Phishing-Mails und -Websites über die Plattform antiphishing.ch melden oder Mails an reports@antiphishing.ch weiterleiten.",
+            "Wer eine Rückmeldung möchte, nutzt das Meldeformular des BACS (report.ncsc.admin.ch).",
+            "In der Firma: immer zuerst die interne Informatik bzw. den festgelegten Meldeprozess."
+          ]
+        },
+        {
+          "id": "mfa",
+          "title": "Zwei-Faktor-Authentifizierung",
+          "tags": [
+            "mfa",
+            "2fa",
+            "code"
+          ],
+          "body": [
+            "Ein zweiter Faktor (App, Code, Sicherheitsschlüssel) schützt dein Konto, selbst wenn das Passwort gestohlen wurde.",
+            "Aber: Bestätige nur Anmeldungen, die du selbst gestartet hast, und gib Codes nie weiter. Unerwartete Code-SMS bedeuten, dass jemand dein Passwort kennt – ändere es."
+          ]
+        }
+      ]
+    }
+  ]
+}

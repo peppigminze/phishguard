@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "steueramt-rueckerstattung",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "behoerde",
+  "isPhishing": true,
+  "title": "Steueramt: Rückerstattung per Kreditkarte",
+  "sender": {
+    "name": "Kantonales Steueramt Musterland",
+    "address": "info@steueramt-musterland.invalid"
+  },
+  "headers": {
+    "spf": "fail",
+    "dkim": "none",
+    "dmarc": "fail"
+  },
+  "subject": "Steuerrückerstattung 2025: CHF 612.35 bereit zur Auszahlung",
+  "received": "Mo",
+  "body": "Sehr geehrte Steuerpflichtige, sehr geehrter Steuerpflichtiger\n\nNach Prüfung Ihrer Steuererklärung 2025 {{flag:geld|steht Ihnen eine Rückerstattung von CHF 612.35 zu}}.\n\n{{flag:kreditkarte|Die Auszahlung erfolgt ausschliesslich auf Kreditkarte.}} Bitte füllen Sie das angehängte Formular aus.\n\n{{flag:frist|Das Angebot ist bis Freitag gültig.}}\n\nFreundliche Grüsse\nKantonales Steueramt",
+  "attachments": [
+    {
+      "name": "Rueckerstattung_Formular.html",
+      "size": "48 KB",
+      "indicator": "anhang"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Keine Behördendomain",
+      "explanation": "Das Steueramt verwendet steueramt.musterland.example. Behörden schreiben dir ausserdem meist per Brief."
+    },
+    {
+      "id": "geld",
+      "type": "offer",
+      "target": "body",
+      "title": "Geld als Köder",
+      "explanation": "Eine unerwartete Rückzahlung soll dich unvorsichtig machen."
+    },
+    {
+      "id": "kreditkarte",
+      "type": "request",
+      "target": "body",
+      "title": "Auszahlung auf Kreditkarte",
+      "explanation": "Steuerämter zahlen auf dein Bank- oder Postkonto aus – nie auf eine Kreditkarte."
+    },
+    {
+      "id": "anhang",
+      "type": "attachment",
+      "target": "attachment",
+      "title": "HTML-Formular als Anhang",
+      "explanation": "Eine .html-Datei öffnet ein Formular im Browser, das deine Eingaben direkt an Kriminelle schickt."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "«Angebot» mit Frist",
+      "explanation": "Eine Behörde macht keine befristeten Angebote."
+    }
+  ],
+  "explanation": "Behörde, Geld, Kreditkarte und HTML-Anhang – vier Warnsignale auf einmal. Steuerangelegenheiten prüfst du im offiziellen Portal oder per Telefon.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

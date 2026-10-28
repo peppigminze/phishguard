@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "quishing-parkbusse",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "quishing",
+  "isPhishing": true,
+  "title": "Quishing: Ordnungsbusse per QR-Code",
+  "sender": {
+    "name": "Stadtpolizei Musterstadt – Ordnungsbussen",
+    "address": "bussen@musterstadt-parkieren.invalid"
+  },
+  "headers": {
+    "spf": "fail",
+    "dkim": "none",
+    "dmarc": "fail"
+  },
+  "subject": "Ordnungsbusse Nr. 26-44871 – Zahlungserinnerung",
+  "received": "Di",
+  "body": "Guten Tag\n\nIhr Fahrzeug wurde am 21.10. {{flag:vage|im Gebiet Zentrum}} widerrechtlich parkiert. Die Ordnungsbusse von CHF 40.– ist noch nicht beglichen.\n\n{{flag:frist|Bezahlen Sie bis morgen, sonst erhöht sich der Betrag auf CHF 240.– und es folgt eine Anzeige.}}\n\nScannen Sie zur Zahlung einfach den QR-Code mit Ihrem Smartphone.\n\nFreundliche Grüsse\nStadtpolizei Musterstadt",
+  "qr": {
+    "url": "https://musterstadt-parkieren.invalid/pay?b=26-44871",
+    "caption": "Zahlung per Smartphone",
+    "indicator": "qr"
+  },
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Keine Behördendomain",
+      "explanation": "Ordnungsbussen kommen per Post oder als Zettel am Auto – nicht von musterstadt-parkieren.invalid."
+    },
+    {
+      "id": "vage",
+      "type": "context",
+      "target": "body",
+      "title": "Vage Angaben",
+      "explanation": "Kein Kontrollschild, kein genauer Ort. Echte Bussen nennen alle Details."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "Drohung mit Anzeige",
+      "explanation": "Versechsfachter Betrag und Anzeige – Angst als Druckmittel."
+    },
+    {
+      "id": "qr",
+      "type": "qr",
+      "target": "qr",
+      "title": "QR-Code statt Link",
+      "explanation": "QR-Codes umgehen Linkfilter der Firma, und auf dem Handy siehst du die Zieladresse schlechter. Hier führt er auf musterstadt-parkieren.invalid."
+    }
+  ],
+  "explanation": "Quishing versteckt den Link in einem QR-Code, damit Sicherheitsfilter ihn nicht erkennen und du ihn mit dem weniger geschützten Smartphone öffnest.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

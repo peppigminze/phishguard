@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "hr-ferienplanung-legit",
+  "channel": "email",
+  "difficulty": "easy",
+  "category": "intern",
+  "isPhishing": false,
+  "title": "Personal: Ferienplanung 2027",
+  "sender": {
+    "name": "Corinne Graf",
+    "address": "corinne.graf@muster-ag.example"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "Ferienplanung 2027 – bitte bis 30.11. eintragen",
+  "received": "Di",
+  "body": "Hoi zusammen\n\nWie jedes Jahr bitte ich euch, eure Ferienwünsche für 2027 bis am 30. November im Ferienplaner einzutragen. {{flag:intranet|Ihr findet ihn wie gewohnt im Intranet unter Personal → Ferien.}}\n\n{{flag:frist|Die Frist ist grosszügig}} – bei Fragen kommt einfach bei mir vorbei (Büro 2.14).\n\nLiebe Grüsse\nCorinne\nPersonal",
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "legit",
+      "target": "sender",
+      "title": "Bekannte Kollegin",
+      "explanation": "Interne Adresse einer bekannten Person, Authentifizierung bestanden."
+    },
+    {
+      "id": "intranet",
+      "type": "legit",
+      "target": "body",
+      "title": "Gewohnter Weg statt Link",
+      "explanation": "Du sollst selbst ins Intranet gehen, es gibt keinen Link."
+    },
+    {
+      "id": "frist",
+      "type": "legit",
+      "target": "body",
+      "title": "Realistische Frist",
+      "explanation": "Einen Monat Zeit, keine Drohung – so sieht normale Organisation aus."
+    }
+  ],
+  "explanation": "Alltägliche interne Mail ohne Link, ohne Druck und mit bekannten Kontaktwegen.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

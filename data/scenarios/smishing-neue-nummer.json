@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "smishing-neue-nummer",
+  "channel": "sms",
+  "difficulty": "easy",
+  "category": "messenger",
+  "isPhishing": true,
+  "title": "Smishing: «Hallo Mami, neue Nummer»",
+  "sender": {
+    "name": "+41 00 667 20 13",
+    "address": "+41 00 667 20 13"
+  },
+  "received": "16:58",
+  "body": "{{flag:anrede|Hallo Mami, das ist meine neue Nummer}}, mein Handy ist kaputt gegangen. Kannst du mir schnell helfen? {{flag:geld|Ich muss heute noch eine Rechnung über CHF 1'380.– bezahlen}}, mit dem neuen Handy geht das E-Banking noch nicht. {{flag:kanal|Bitte nicht anrufen, das Mikrofon geht nicht}} 🙏",
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Unbekannte Nummer",
+      "explanation": "Die Nummer ist dir unbekannt. Ruf die alte Nummer an oder frag eine gemeinsame Kontaktperson."
+    },
+    {
+      "id": "anrede",
+      "type": "context",
+      "target": "body",
+      "title": "Allgemeine Familienanrede",
+      "explanation": "«Mami» ohne Namen wird an tausende Nummern verschickt – irgendwer fühlt sich angesprochen."
+    },
+    {
+      "id": "geld",
+      "type": "request",
+      "target": "body",
+      "title": "Dringende Geldbitte",
+      "explanation": "Eine Rechnung «heute noch» für jemand anderen bezahlen – darum geht es eigentlich."
+    },
+    {
+      "id": "kanal",
+      "type": "channel",
+      "target": "body",
+      "title": "Anrufen wird verhindert",
+      "explanation": "Ein Anruf würde den Betrug sofort auffliegen lassen."
+    }
+  ],
+  "explanation": "Der «Enkeltrick» per SMS. Verifiziere über einen anderen Kanal, den du kennst, bevor du Geld schickst."
+}

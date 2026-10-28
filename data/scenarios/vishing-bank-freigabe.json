@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "vishing-bank-freigabe",
+  "channel": "voice",
+  "difficulty": "hard",
+  "category": "bank",
+  "isPhishing": true,
+  "title": "Vishing: «Sicherheitsabteilung» der Bank",
+  "sender": {
+    "name": "Gletscherbank (angezeigte Nummer)",
+    "address": "+41 00 800 55 00"
+  },
+  "received": "17:45",
+  "body": "Anrufer: Guten Tag, Sicherheitsabteilung der Gletscherbank, mein Name ist Frau Huber. {{flag:vorwand|Wir haben gerade eine verdächtige Zahlung von CHF 2'940.– ins Ausland blockiert.}}\nDu: Das war nicht ich!\nAnrufer: Das dachten wir uns. Ich storniere die Zahlung, Sie müssen nur bestätigen.\nAnrufer: {{flag:app|Sie erhalten gleich eine Freigabe in Ihrer Bank-App – bitte tippen Sie auf «Bestätigen».}}\nAnrufer: {{flag:druck|Bitte bleiben Sie in der Leitung und legen Sie nicht auf, sonst verfällt die Stornierung.}}",
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Angezeigte Nummer ist fälschbar",
+      "explanation": "Caller-ID-Spoofing: Auf dem Display kann jede beliebige Nummer stehen, auch die echte der Bank."
+    },
+    {
+      "id": "vorwand",
+      "type": "authority",
+      "target": "body",
+      "title": "Schreckmoment",
+      "explanation": "Eine angebliche Betrugszahlung macht dich dankbar für «Hilfe»."
+    },
+    {
+      "id": "app",
+      "type": "request",
+      "target": "body",
+      "title": "Freigabe bestätigen",
+      "explanation": "Mit der Freigabe autorisierst du eine Zahlung – nicht eine Stornierung. Lies Freigaben in der App immer genau."
+    },
+    {
+      "id": "druck",
+      "type": "urgency",
+      "target": "body",
+      "title": "«Nicht auflegen»",
+      "explanation": "Du sollst nicht die Bank selbst zurückrufen können."
+    }
+  ],
+  "explanation": "Hier wird nicht nach dem Passwort gefragt – es geht um eine App-Freigabe. Lege auf und rufe die Nummer auf deiner Bankkarte selbst an."
+}

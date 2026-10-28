@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "anhang-scan-exe",
+  "channel": "email",
+  "difficulty": "easy",
+  "category": "intern",
+  "isPhishing": true,
+  "title": "Gescanntes Dokument mit .exe",
+  "sender": {
+    "name": "Scanner Muster AG",
+    "address": "scanner@muster-ag-scan.invalid"
+  },
+  "headers": {
+    "spf": "fail",
+    "dkim": "none",
+    "dmarc": "fail"
+  },
+  "subject": "Neues Scan-Dokument von MFP-3OG",
+  "received": "09:58",
+  "body": "Sie haben ein neues gescanntes Dokument erhalten.\n\nGerät: MFP-3OG\nSeiten: 3\n\n{{flag:oeffnen|Bitte öffnen Sie den Anhang, um das Dokument anzuzeigen.}}",
+  "attachments": [
+    {
+      "name": "Scan_20261027.pdf.exe",
+      "size": "812 KB",
+      "indicator": "anhang"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Fremde Domain",
+      "explanation": "Interne Scanner senden von muster-ag.example, nicht von muster-ag-scan.invalid."
+    },
+    {
+      "id": "anhang",
+      "type": "attachment",
+      "target": "attachment",
+      "title": "Doppelte Dateiendung .pdf.exe",
+      "explanation": "Die echte Endung ist .exe – ein Programm. «.pdf» davor soll dich täuschen."
+    },
+    {
+      "id": "oeffnen",
+      "type": "request",
+      "target": "body",
+      "title": "Aufforderung zum Öffnen",
+      "explanation": "Der einzige Zweck der Mail ist, dass du den Anhang startest."
+    }
+  ],
+  "explanation": "Die Dateiendung verrät alles: .exe ist ausführbarer Code, kein Scan. Solche Anhänge nie öffnen, sondern melden.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

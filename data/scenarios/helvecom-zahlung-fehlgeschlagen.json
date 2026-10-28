@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "helvecom-zahlung-fehlgeschlagen",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "telekom",
+  "isPhishing": true,
+  "title": "Helvecom: Zahlung fehlgeschlagen",
+  "sender": {
+    "name": "Helvecom",
+    "address": "rechnung@helvecom-billing.invalid"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "none",
+    "dmarc": "none"
+  },
+  "subject": "Ihre Rechnung Oktober: Zahlung fehlgeschlagen",
+  "received": "09:31",
+  "body": "Grüezi\n\nLeider konnte {{flag:betrag|die Abbuchung von CHF 74.90 für Ihr Abo nicht durchgeführt werden}}. {{flag:sperre|Ohne Zahlung wird Ihr Anschluss in 48 Stunden gesperrt.}}\n\nAktualisieren Sie Ihre Zahlungsmethode hier: {{link:pay|Mein Helvecom}}\n\nFreundliche Grüsse\nIhr Helvecom Kundendienst",
+  "links": [
+    {
+      "id": "pay",
+      "url": "https://mein-helvecom.billing-update.invalid/payment",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Abweichende Domain",
+      "explanation": "Echte Rechnungen kommen von helvecom.example, nicht von helvecom-billing.invalid."
+    },
+    {
+      "id": "betrag",
+      "type": "request",
+      "target": "body",
+      "title": "Fehlgeschlagene Zahlung als Vorwand",
+      "explanation": "Ein realistischer Betrag macht die Mail glaubwürdig. Ob wirklich etwas offen ist, siehst du im Kundenkonto."
+    },
+    {
+      "id": "sperre",
+      "type": "urgency",
+      "target": "body",
+      "title": "Drohende Sperre",
+      "explanation": "48 Stunden bis zur Sperre – damit du nicht in Ruhe nachprüfst."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Subdomain-Trick",
+      "explanation": "Die Adresse beginnt mit «mein-helvecom», die eigentliche Domain ist aber billing-update.invalid. Entscheidend ist immer der Teil direkt vor der Endung."
+    }
+  ],
+  "explanation": "Wirkt sauber, aber Domain und Link passen nicht zum Anbieter. Der Subdomain-Trick ist ein Klassiker: Lies Domains immer von rechts nach links.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

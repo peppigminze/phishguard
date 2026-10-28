@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "lieferant-rechnung-legit",
+  "channel": "email",
+  "difficulty": "hard",
+  "category": "rechnung",
+  "isPhishing": false,
+  "title": "Lieferantenrechnung wie erwartet",
+  "situation": "Die Muster AG hat bei der Druckerei Alpstein AG Broschüren bestellt (Bestellung PO-26-0311).",
+  "sender": {
+    "name": "Druckerei Alpstein AG – Buchhaltung",
+    "address": "buchhaltung@druckerei-alpstein.example"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "Rechnung 2026-1187 – Broschüren Herbstmesse",
+  "received": "14:05",
+  "body": "Guten Tag Frau Brunner\n\nBesten Dank für Ihren Auftrag {{flag:bestellung|«Broschüren Herbstmesse» (Ihre Bestellung PO-26-0311)}}. Im Anhang finden Sie die Rechnung 2026-1187 über CHF 3'412.80.\n\n{{flag:konto|Zahlbar innert 30 Tagen auf unser bekanntes Konto, wie auf allen bisherigen Rechnungen vermerkt.}}\n\nBei Fragen erreichen Sie mich unter der Nummer auf unserer Website.\n\nFreundliche Grüsse\nSandra Lüthi\nBuchhaltung\nDruckerei Alpstein AG",
+  "attachments": [
+    {
+      "name": "Rechnung_2026-1187.pdf",
+      "size": "212 KB",
+      "indicator": "pdf"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "header",
+      "type": "legit",
+      "target": "headers",
+      "title": "Saubere Header",
+      "explanation": "Keine abweichende Antwortadresse, Authentifizierung bestanden."
+    },
+    {
+      "id": "bestellung",
+      "type": "legit",
+      "target": "body",
+      "title": "Bezug zur echten Bestellung",
+      "explanation": "Die Bestellnummer stimmt mit eurer Bestellung überein."
+    },
+    {
+      "id": "konto",
+      "type": "legit",
+      "target": "body",
+      "title": "Bekannte Bankverbindung",
+      "explanation": "Keine Änderung der IBAN, normale Zahlungsfrist von 30 Tagen."
+    },
+    {
+      "id": "pdf",
+      "type": "legit",
+      "target": "attachment",
+      "title": "PDF-Rechnung",
+      "explanation": "Ein PDF passend zur Bestellung."
+    }
+  ],
+  "explanation": "Vergleiche mit dem Rechnungsbetrug-Szenario: gleicher Lieferant, aber keine neue IBAN, kein Druck und eine passende Bestellnummer. Wer hier alles meldet, bremst den Betrieb unnötig.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

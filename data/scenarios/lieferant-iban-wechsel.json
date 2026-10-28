@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "lieferant-iban-wechsel",
+  "channel": "email",
+  "difficulty": "hard",
+  "category": "rechnung",
+  "isPhishing": true,
+  "title": "Lieferant meldet neue Bankverbindung",
+  "situation": "Die Muster AG hat bei der Druckerei Alpstein AG Broschüren bestellt.",
+  "sender": {
+    "name": "Druckerei Alpstein AG – Buchhaltung",
+    "address": "buchhaltung@druckerei-alpstein.example"
+  },
+  "headers": {
+    "replyTo": "buchhaltung@druckerei-alpstein-ag.invalid",
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "AW: Rechnung 2026-1187 – neue Bankverbindung",
+  "received": "14:20",
+  "body": "Guten Tag Frau Brunner\n\nBesten Dank für die Bestellung der Broschüren. Im Anhang finden Sie die Rechnung 2026-1187.\n\n{{flag:iban|Bitte beachten Sie, dass sich unsere Bankverbindung geändert hat.}} {{flag:neu|Überweisen Sie ab sofort nur noch auf das Konto CH93 0000 0000 0000 0000 0}}; das alte Konto wird wegen einer Revision gesperrt.\n\n{{flag:eile|Da die Rechnung bereits fällig ist, wären wir um eine Zahlung bis morgen froh.}}\n\nFreundliche Grüsse\nSandra Lüthi\nBuchhaltung\nDruckerei Alpstein AG",
+  "attachments": [
+    {
+      "name": "Rechnung_2026-1187.pdf",
+      "size": "212 KB"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "header",
+      "type": "headers",
+      "target": "headers",
+      "title": "Antwortadresse weicht ab",
+      "explanation": "Der Absender stimmt, aber Antworten gehen an druckerei-alpstein-ag.invalid. Das deutet auf ein gehacktes Postfach beim Lieferanten hin."
+    },
+    {
+      "id": "iban",
+      "type": "request",
+      "target": "body",
+      "title": "Wechsel der Bankverbindung per Mail",
+      "explanation": "Kontowechsel per Mail sind der Kern von Rechnungsbetrug. Echte Änderungen bestätigst du telefonisch über eine bekannte Nummer."
+    },
+    {
+      "id": "neu",
+      "type": "context",
+      "target": "body",
+      "title": "Unplausible Begründung",
+      "explanation": "Ein Konto wird nicht «wegen einer Revision gesperrt». Die Begründung soll Rückfragen vermeiden."
+    },
+    {
+      "id": "eile",
+      "type": "urgency",
+      "target": "body",
+      "title": "Zeitdruck",
+      "explanation": "Zahlung «bis morgen» bei einer Rechnung, die eben erst kam."
+    }
+  ],
+  "explanation": "Gefährlich, weil echt wirkend: Die Mail kann aus dem gehackten Postfach des Lieferanten stammen. Neue IBANs immer telefonisch über die bekannte Nummer verifizieren – nie über Kontaktangaben in derselben Mail.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

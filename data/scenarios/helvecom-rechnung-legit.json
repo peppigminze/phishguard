@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "helvecom-rechnung-legit",
+  "channel": "email",
+  "difficulty": "medium",
+  "category": "telekom",
+  "isPhishing": false,
+  "title": "Helvecom: Monatsrechnung",
+  "sender": {
+    "name": "Helvecom",
+    "address": "rechnung@helvecom.example"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "Ihre Rechnung Oktober 2026",
+  "received": "06:15",
+  "body": "Guten Tag Lena Brunner\n\nIhre Rechnung für Oktober 2026 über CHF 74.90 ist bereit. {{flag:lsv|Der Betrag wird wie gewohnt am 15.11. per Lastschrift von Ihrem Konto abgebucht.}}\n\nKundennummer: 7781-0442\n\nRechnung ansehen: {{link:bill|helvecom.example/mein-konto/rechnungen}}\n\nFreundliche Grüsse\nIhr Helvecom Team",
+  "links": [
+    {
+      "id": "bill",
+      "url": "https://helvecom.example/mein-konto/rechnungen",
+      "indicator": "linkok"
+    }
+  ],
+  "attachments": [
+    {
+      "name": "Rechnung_2026-10.pdf",
+      "size": "148 KB"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "legit",
+      "target": "sender",
+      "title": "Offizielle Domain",
+      "explanation": "rechnung@helvecom.example, Authentifizierung bestanden."
+    },
+    {
+      "id": "lsv",
+      "type": "legit",
+      "target": "body",
+      "title": "Kein Handlungsbedarf",
+      "explanation": "Die Abbuchung läuft automatisch. Nichts muss «aktualisiert» werden."
+    },
+    {
+      "id": "linkok",
+      "type": "legit",
+      "target": "link",
+      "title": "Link zur echten Domain",
+      "explanation": "Die Zieladresse ist helvecom.example."
+    }
+  ],
+  "explanation": "Gleicher Anbieter und Betrag wie im Phishing-Beispiel, aber alles passt: Domain, Link, kein Druck.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

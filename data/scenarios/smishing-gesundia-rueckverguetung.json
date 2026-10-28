@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "smishing-gesundia-rueckverguetung",
+  "channel": "sms",
+  "difficulty": "medium",
+  "category": "krankenkasse",
+  "isPhishing": true,
+  "title": "Smishing: Krankenkasse zahlt zurück",
+  "sender": {
+    "name": "Gesundia",
+    "address": "Gesundia"
+  },
+  "received": "12:05",
+  "body": "Gesundia: Sie haben {{flag:geld|eine Rückvergütung von CHF 186.20 ausstehend}}. {{flag:daten|Bestätigen Sie Ihre Bankdaten}} unter {{link:l|gesundia-rueckerstattung.invalid}}, damit wir die Zahlung auslösen können.",
+  "links": [
+    {
+      "id": "l",
+      "url": "https://gesundia-rueckerstattung.invalid",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "SMS-Absendernamen sind fälschbar",
+      "explanation": "Dass «Gesundia» als Absender steht, beweist nichts. Namen bei SMS lassen sich frei setzen – betrügerische SMS landen manchmal sogar im gleichen Verlauf wie echte."
+    },
+    {
+      "id": "geld",
+      "type": "offer",
+      "target": "body",
+      "title": "Unerwartete Rückvergütung",
+      "explanation": "Rückvergütungen kommen automatisch aufs hinterlegte Konto."
+    },
+    {
+      "id": "daten",
+      "type": "request",
+      "target": "body",
+      "title": "Bankdaten per SMS-Link",
+      "explanation": "Deine Bankdaten hat die Krankenkasse längst. Sie fragt nicht per SMS danach."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Fremde Domain",
+      "explanation": "gesundia-rueckerstattung.invalid gehört nicht zur Krankenkasse (gesundia.example)."
+    }
+  ],
+  "explanation": "Der vertraute Absendername macht diese SMS gefährlich. Prüfe Rückvergütungen im Kundenportal oder in der App der Krankenkasse."
+}

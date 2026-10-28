@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "grossmart-gutschein",
+  "channel": "email",
+  "difficulty": "easy",
+  "category": "gutschein",
+  "isPhishing": true,
+  "title": "Grossmart: Gewinnspiel-Gutschein",
+  "sender": {
+    "name": "Grossmart Jubiläum",
+    "address": "jubilaeum@grossmart-gewinn.invalid"
+  },
+  "headers": {
+    "spf": "fail",
+    "dkim": "none",
+    "dmarc": "fail"
+  },
+  "subject": "Glückwunsch! Sie wurden für einen CHF 500 Gutschein ausgewählt",
+  "received": "So",
+  "body": "Liebe Kundin, lieber Kunde\n\nZum 100-Jahr-Jubiläum verlost Grossmart 1000 Einkaufsgutscheine. {{flag:gewinn|Sie wurden zufällig als Gewinner ausgewählt!}}\n\nBeantworten Sie nur 3 kurze Fragen und {{flag:gebuehr|bezahlen Sie die Versandgebühr von CHF 1.95}}.\n\n{{link:quiz|Jetzt Gutschein sichern}}\n\n{{flag:frist|Noch 7 Gutscheine verfügbar!}}",
+  "links": [
+    {
+      "id": "quiz",
+      "url": "https://grossmart-gewinn.invalid/quiz",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Gewinnspiel-Domain",
+      "explanation": "grossmart-gewinn.invalid ist nicht grossmart.example."
+    },
+    {
+      "id": "gewinn",
+      "type": "offer",
+      "target": "body",
+      "title": "Zu schön, um wahr zu sein",
+      "explanation": "Du hast an keinem Gewinnspiel teilgenommen und trotzdem gewonnen?"
+    },
+    {
+      "id": "gebuehr",
+      "type": "request",
+      "target": "body",
+      "title": "Kleine Gebühr für grossen Gewinn",
+      "explanation": "Für die «Versandgebühr» gibst du Kartendaten ein – oft folgt ein teures Abo."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "Künstliche Knappheit",
+      "explanation": "«Noch 7 verfügbar» erzeugt Torschlusspanik."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Link zu fremder Domain",
+      "explanation": "Der Button führt nicht zu grossmart.example."
+    }
+  ],
+  "explanation": "Gewinnspiel-Phishing lebt von Gier und Knappheit. Echte Gewinne kosten nichts.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

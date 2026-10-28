@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "ceo-fraud-vertraulich",
+  "channel": "email",
+  "difficulty": "hard",
+  "category": "ceo-fraud",
+  "isPhishing": true,
+  "title": "CEO-Fraud: Vertrauliche Überweisung",
+  "situation": "Du arbeitest in der Finanzabteilung der Muster AG und kannst Zahlungen auslösen.",
+  "sender": {
+    "name": "Martin Keller",
+    "address": "martin.keller@rnuster-ag.example"
+  },
+  "headers": {
+    "replyTo": "m.keller.ceo@mailbox-privat.invalid",
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "Vertraulich – kurze Bitte",
+  "received": "11:02",
+  "body": "Hallo Lena\n\nBist du gerade am Arbeitsplatz? Ich brauche kurz deine Unterstützung bei einer {{flag:geheim|vertraulichen Übernahme, über die noch niemand informiert ist}}.\n\nBitte veranlasse heute noch {{flag:zahlung|eine Überweisung von CHF 48'500 an unseren Anwalt}}. Die Details schicke ich dir, sobald du bestätigst.\n\n{{flag:kanal|Ich sitze den ganzen Tag in Sitzungen und bin telefonisch nicht erreichbar}} – antworte einfach auf diese Mail.\n\nDanke dir!\nMartin\n\nVon meinem Smartphone gesendet",
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Vertauschte Buchstaben",
+      "explanation": "rnuster-ag statt muster-ag: Aus «m» wurden «r» und «n». In vielen Schriften fällt das kaum auf."
+    },
+    {
+      "id": "header",
+      "type": "headers",
+      "target": "headers",
+      "title": "Antwort geht an Privatadresse",
+      "explanation": "Die Antwortadresse (Reply-To) ist eine fremde Mailbox. Und: SPF/DKIM «pass» heisst nur, dass die gefälschte Domain korrekt eingerichtet ist – nicht, dass sie echt ist."
+    },
+    {
+      "id": "geheim",
+      "type": "authority",
+      "target": "body",
+      "title": "Geheimhaltung",
+      "explanation": "Du sollst niemanden fragen können. Genau das schützt die Angreifenden."
+    },
+    {
+      "id": "zahlung",
+      "type": "request",
+      "target": "body",
+      "title": "Hohe Zahlung ausserhalb des Prozesses",
+      "explanation": "Grosse Überweisungen ohne Rechnung, Visum oder Vier-Augen-Prinzip sind ein Alarmsignal."
+    },
+    {
+      "id": "kanal",
+      "type": "channel",
+      "target": "body",
+      "title": "Rückfrage wird verhindert",
+      "explanation": "«Telefonisch nicht erreichbar» soll verhindern, dass du über einen zweiten Kanal nachfragst."
+    }
+  ],
+  "explanation": "CEO-Fraud setzt auf Autorität, Geheimhaltung und Zeitdruck. Rufe bei Zahlungsaufträgen immer über eine bekannte Nummer zurück und halte dich an den Freigabeprozess – auch wenn «der Chef» drängt.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "postis-zustellung-legit",
+  "channel": "email",
+  "difficulty": "easy",
+  "category": "paket",
+  "isPhishing": false,
+  "title": "Postis: Zustellung heute",
+  "sender": {
+    "name": "Postis",
+    "address": "benachrichtigung@postis.example"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "Ihre Sendung 99.00.481203.2241 wird heute zugestellt",
+  "received": "07:30",
+  "body": "Guten Tag Lena Brunner\n\n{{flag:name|Ihre Sendung von Druckerei Alpstein AG}} wird heute zwischen 10:30 und 12:30 Uhr zugestellt.\n\n{{flag:keinezahlung|Es ist keine Zahlung und keine Aktion Ihrerseits nötig.}} Falls Sie nicht da sind, wird das Paket in die Filiale gebracht.\n\nSendung verfolgen: {{link:track|postis.example/sendungen}}\n\nFreundliche Grüsse\nPostis",
+  "links": [
+    {
+      "id": "track",
+      "url": "https://postis.example/sendungen/99.00.481203.2241",
+      "indicator": "linkok"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "legit",
+      "target": "sender",
+      "title": "Offizielle Domain",
+      "explanation": "Die Mail kommt von postis.example, die Authentifizierung (SPF/DKIM/DMARC) ist bestanden."
+    },
+    {
+      "id": "name",
+      "type": "legit",
+      "target": "body",
+      "title": "Persönlich und konkret",
+      "explanation": "Dein Name und ein erwarteter Absender werden genannt."
+    },
+    {
+      "id": "keinezahlung",
+      "type": "legit",
+      "target": "body",
+      "title": "Kein Handlungsdruck",
+      "explanation": "Es wird weder Geld noch eine Eingabe verlangt."
+    },
+    {
+      "id": "linkok",
+      "type": "legit",
+      "target": "link",
+      "title": "Link passt zum Absender",
+      "explanation": "Der Link führt auf postis.example."
+    }
+  ],
+  "explanation": "Eine normale Zustellinfo: korrekte Domain, persönliche Anrede, keine Zahlung, kein Druck. Klicken wäre hier unbedenklich.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

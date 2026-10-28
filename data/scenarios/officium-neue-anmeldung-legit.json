@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "officium-neue-anmeldung-legit",
+  "channel": "email",
+  "difficulty": "hard",
+  "category": "it-login",
+  "isPhishing": false,
+  "title": "Officium: Hinweis auf neue Anmeldung",
+  "situation": "Du hast dich heute Morgen zum ersten Mal am neuen Firmenlaptop angemeldet.",
+  "sender": {
+    "name": "Officium-Kontoteam",
+    "address": "account-security@officium.example"
+  },
+  "headers": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass"
+  },
+  "subject": "Neue Anmeldung bei Ihrem Officium-Konto",
+  "received": "08:01",
+  "body": "Hallo Lena\n\nWir haben eine neue Anmeldung bei Ihrem Konto lena.brunner@muster-ag.example festgestellt.\n\nGerät: Windows, Edge\nOrt: Winterthur, Schweiz\nZeit: heute, 07:58 Uhr\n\n{{flag:erwartet|Wenn Sie das waren, müssen Sie nichts tun.}} Wenn nicht, prüfen Sie Ihr Konto unter {{link:sec|officium.example/sicherheit}}. {{flag:keinpw|Wir fragen in dieser Nachricht nie nach Ihrem Passwort.}}",
+  "links": [
+    {
+      "id": "sec",
+      "url": "https://officium.example/sicherheit",
+      "indicator": "linkok"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "legit",
+      "target": "sender",
+      "title": "Echte Domain",
+      "explanation": "account-security@officium.example, Authentifizierung bestanden."
+    },
+    {
+      "id": "erwartet",
+      "type": "legit",
+      "target": "body",
+      "title": "Passt zu deiner Anmeldung",
+      "explanation": "Zeit und Gerät stimmen mit deiner eigenen Anmeldung überein."
+    },
+    {
+      "id": "linkok",
+      "type": "legit",
+      "target": "link",
+      "title": "Link auf die echte Domain",
+      "explanation": "Die Zieladresse ist officium.example – kein Subdomain-Trick."
+    },
+    {
+      "id": "keinpw",
+      "type": "legit",
+      "target": "body",
+      "title": "Keine Datenabfrage",
+      "explanation": "Es wird nichts verlangt."
+    }
+  ],
+  "explanation": "Sicherheitsbenachrichtigungen sind nützlich. Diese hier passt zu deiner eigenen Anmeldung und verlangt nichts. Bei Zweifel trotzdem: Portal selbst aufrufen statt klicken.",
+  "recipient": "lena.brunner@muster-ag.example"
+}

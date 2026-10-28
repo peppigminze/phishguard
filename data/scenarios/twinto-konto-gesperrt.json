@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-CH",
+  "id": "twinto-konto-gesperrt",
+  "channel": "sms",
+  "difficulty": "easy",
+  "category": "zahlung",
+  "isPhishing": true,
+  "title": "Twinto: Konto angeblich gesperrt",
+  "sender": {
+    "name": "+41 00 744 19 02",
+    "address": "+41 00 744 19 02"
+  },
+  "received": "10:47",
+  "body": "Twinto: {{flag:sperre|Ihr Konto wurde aus Sicherheitsgründen gesperrt}}. {{flag:frist|Entsperren Sie es heute noch}} unter {{link:l|twinto-entsperren.invalid/login}}, sonst verfallen Ihre Guthaben.",
+  "links": [
+    {
+      "id": "l",
+      "url": "https://twinto-entsperren.invalid/login",
+      "indicator": "link"
+    }
+  ],
+  "indicators": [
+    {
+      "id": "absender",
+      "type": "sender",
+      "target": "sender",
+      "title": "Unbekannte Handynummer",
+      "explanation": "Zahlungs-Apps informieren dich in der App selbst, nicht per SMS von einer gewöhnlichen Mobilnummer."
+    },
+    {
+      "id": "sperre",
+      "type": "authority",
+      "target": "body",
+      "title": "Drohung mit Sperre",
+      "explanation": "Eine angebliche Sperrung soll dich erschrecken, damit du schnell handelst."
+    },
+    {
+      "id": "frist",
+      "type": "urgency",
+      "target": "body",
+      "title": "Zeitdruck",
+      "explanation": "«Heute noch» und «sonst verfallen» sind typische Druckmittel."
+    },
+    {
+      "id": "link",
+      "type": "link",
+      "target": "link",
+      "title": "Login-Link per SMS",
+      "explanation": "Der Link führt auf twinto-entsperren.invalid. Logins machst du nur in der offiziellen App."
+    }
+  ],
+  "explanation": "Smishing mit Sperr-Drohung. Öffne bei solchen Meldungen direkt die echte App – ist dort alles normal, war die SMS Betrug."
+}
